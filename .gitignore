@@ -1,0 +1,9 @@
+# 本地运行时产生的数据（可物理删除，符合隐私承诺）
+constraints.json
+decision_history.jsonl
+decision_record.json
+__pycache__/
+*.pyc
+
+# 生成的对外稿子（构建产物）
+马斯克展示方案_修正版.pdf
