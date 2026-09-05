@@ -14,13 +14,32 @@
 | **太空算力**（轨道数据中心极贵） | **P1 分型器**：判断任务值不值得、用哪类算力 |
 | **跨公司 AI 治理** | 统一的 **AI 决策审计协议**（协议，不是集成） |
 
+## 安装
+
+需要 Python 3.9 或更高版本。运行时只依赖 Python 标准库：
+
+```bash
+git clone https://github.com/somo-ui/cognitive-gate.git
+cd cognitive-gate
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install .
+```
+
+安装后可直接使用 `cognitive-gate --demo`。开发测试不需要额外依赖：
+
+```bash
+python -m unittest discover -s tests -v
+```
+
 ## 3 分钟验证（无需 API key，纯标准库）
 
 ```bash
 cd cognitive-gate
 python -m unittest tests.test_gate -v     # 跑测试
-python demo.py --demo                     # 看端到端演示（含"说三次不对永久锁定"）
-python demo.py --input "帮我整理房间，但别用红色方案"   # 单条请求
+cognitive-gate --demo                     # 看端到端演示（含"说三次不对永久锁定"）
+cognitive-gate --input "帮我整理房间，但别用红色方案"   # 单条请求
 ```
 
 默认使用 `MockGrok`，因此零配置即可端到端跑通。所有个人数据仅落在本地
