@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible failure in Cognitive Gate.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Cognitive Gate. Please keep reports reproducible and do not include secrets, API keys, or private logs.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What failed?
+      description: Describe the behavior that looks wrong.
+      placeholder: The gate allowed/blocked/recorded something incorrectly...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include commands, input text, and the observed output.
+      placeholder: |
+        1. Run `cognitive-gate --input "..."`
+        2. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should the deterministic control layer have done?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Python version, OS, install method, commit or release tag.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preflight checks
+      options:
+        - label: I removed secrets, private data, and production logs.
+          required: true
+        - label: I understand this early reference is not a production security boundary.
+          required: true
