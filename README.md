@@ -1,8 +1,15 @@
-# Cognitive Gate —— 大模型前的编译层 / 后的审计层（最小可运行参考实现）
+# Cognitive Gate / ORIGIN early reference
+
+[![Tests](https://github.com/somo-ui/cognitive-gate/actions/workflows/test.yml/badge.svg)](https://github.com/somo-ui/cognitive-gate/actions/workflows/test.yml)
+[![Release](https://img.shields.io/github/v/release/somo-ui/cognitive-gate)](https://github.com/somo-ui/cognitive-gate/releases)
+
+这是 ORIGIN（源点协约）的早期公开参考实现，不代表当前仍在演化的安全核心。
 
 > 这不是一个产品 demo，而是一个**控制层优先**的架构证明：模型是引擎，本仓库提供方向盘和刹车。
 
 ## 它解决什么
+
+一句话：把用户表达的约束编译成可审计请求，并在模型输出后检查是否违反约束。
 
 对齐马斯克 2026 年真实项目与言论的五个痛点：
 
@@ -87,6 +94,16 @@ gate = CognitiveGateProtocol()   # 自动选用 GrokAdapter
 对 LLM 输出的语义合规审计目前是 **best-effort 护栏**，不是数学保证——
 这是开放研究问题。本层用可解释规则 + 可插拔模型自检做"最大努力拦截"，
 并明确标注 `confidence` 的不确定性。请勿将其宣传为对灭绝风险的保险。
+
+## 项目状态
+
+当前版本适合学习、演示和接口验证。它还不是生产级安全边界，不提供操作系统级沙箱、
+硬件密钥托管、跨模型强制执行或对任意外部工具的绝对阻断。生产使用前请自行完成安全审查。
+
+## 参与项目
+
+欢迎通过 Issue 提交可复现问题、使用场景和改进建议。提交代码前请运行完整测试，并在描述中
+说明行为变化、兼容性影响和测试结果。
 
 ## 文件
 
