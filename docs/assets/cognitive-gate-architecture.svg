@@ -1,0 +1,57 @@
+<svg width="1100" height="420" viewBox="0 0 1100 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Cognitive Gate architecture</title>
+  <desc id="desc">A request moves through compile, route, model, audit, and record layers.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 10; }
+      .primary { fill: #0f766e; }
+      .muted { fill: #475569; }
+      .label { fill: #0f172a; font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .small { fill: #334155; font: 500 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .note { fill: #475569; font: 500 16px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .arrow { stroke: #334155; stroke-width: 3; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#334155" />
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1100" height="420" rx="18"/>
+  <text class="label" x="52" y="58">Cognitive Gate</text>
+  <text class="small" x="52" y="90">User constraints become structured, auditable checks around model output.</text>
+
+  <rect class="box" x="55" y="150" width="150" height="95"/>
+  <text class="small" x="85" y="190">User</text>
+  <text class="note" x="80" y="218">request</text>
+
+  <line class="arrow" x1="215" y1="198" x2="275" y2="198"/>
+  <rect class="box" x="285" y="135" width="165" height="125"/>
+  <text class="small" x="330" y="177">Compile</text>
+  <text class="note" x="314" y="207">goal, mode,</text>
+  <text class="note" x="315" y="231">constraints</text>
+
+  <line class="arrow" x1="460" y1="198" x2="520" y2="198"/>
+  <rect class="box" x="530" y="135" width="150" height="125"/>
+  <text class="small" x="577" y="177">Route</text>
+  <text class="note" x="570" y="207">tier and</text>
+  <text class="note" x="577" y="231">cost</text>
+
+  <line class="arrow" x1="690" y1="198" x2="750" y2="198"/>
+  <rect class="box" x="760" y="135" width="150" height="125"/>
+  <text class="small" x="810" y="177">Model</text>
+  <text class="note" x="796" y="207">mock or</text>
+  <text class="note" x="785" y="231">adapter</text>
+
+  <line class="arrow" x1="835" y1="270" x2="835" y2="318"/>
+  <rect class="box" x="635" y="320" width="400" height="62"/>
+  <text class="small" x="680" y="358">Audit result + local decision history</text>
+
+  <line class="arrow" x1="760" y1="350" x2="560" y2="350"/>
+  <rect class="box" x="300" y="320" width="250" height="62"/>
+  <text class="small" x="335" y="358">Allow or block</text>
+
+  <rect x="55" y="295" width="175" height="58" rx="8" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/>
+  <text class="note" x="78" y="330">No API key needed</text>
+  <rect x="55" y="357" width="175" height="35" rx="8" fill="#eef2ff" stroke="#4338ca" stroke-width="2"/>
+  <text class="note" x="83" y="380">Local-first demo</text>
+</svg>

@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.4 - Exposure layer
+
+- Added README architecture visual.
+- Added a social preview SVG for repository sharing.
+- Added distribution guidance for GitHub, skill directories, and hosted demos.
+- Added a minimal Hugging Face Spaces demo template.
+
 ## v0.1.3 - Public entry hardening
 
 - Added direct GitHub install instructions.
