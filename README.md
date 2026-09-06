@@ -2,6 +2,7 @@
 
 [![Tests](https://github.com/somo-ui/cognitive-gate/actions/workflows/test.yml/badge.svg)](https://github.com/somo-ui/cognitive-gate/actions/workflows/test.yml)
 [![Release](https://img.shields.io/github/v/release/somo-ui/cognitive-gate)](https://github.com/somo-ui/cognitive-gate/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Cognitive Gate is a small, installable reference implementation for turning user constraints into structured requests and auditable checks around AI model output.
 
@@ -25,6 +26,14 @@ Cognitive Gate demonstrates one practical pattern:
 ## Install
 
 Requires Python 3.9 or newer. Runtime dependencies: Python standard library only.
+
+Install directly from GitHub:
+
+```bash
+python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.3"
+```
+
+Or install from a local checkout:
 
 ```bash
 git clone https://github.com/somo-ui/cognitive-gate.git
@@ -60,6 +69,18 @@ python examples/03_local_audit_record.py
 ```
 
 The default adapter is a deterministic mock model, so the project is inspectable without provider accounts, API keys, or network access.
+
+## Minimal API
+
+```python
+from cognitive_gate import CognitiveGateProtocol, ConstraintStore
+
+gate = CognitiveGateProtocol(store=ConstraintStore(":memory:"))
+record = gate.decide("Tidy this room, but don't use the red approach")
+
+print(record.final_action)
+print(record.audit.get("blocked_reason"))
+```
 
 ## Architecture
 
@@ -102,13 +123,15 @@ The current audit layer is a best-effort guardrail. It is useful for learning, p
 
 ## Project status
 
-Current version: public reference quality.
+Current version: v0.1.3 public reference quality.
 
 - Installable package with `cognitive-gate` CLI.
 - Local-only deterministic demo.
 - JSON-backed constraint persistence.
 - Unit tests for the early gate behavior.
 - Community templates for issues and pull requests.
+
+See [CHANGELOG.md](CHANGELOG.md) for release history and [docs/PUBLIC_POSITIONING.md](docs/PUBLIC_POSITIONING.md) for public positioning.
 
 ## Contributing
 
