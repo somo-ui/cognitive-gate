@@ -16,6 +16,7 @@ Use this checklist when turning a release into a public entry point.
 - Use the standalone name: `Cognitive Gate`.
 - Use the short summary: `Auditable AI constraints and local decision records.`
 - Use tags: `ai-agent-guardrails`, `ai-constraints`, `auditable-ai`, `model-agnostic`, `local-first`.
+- Publish from `skill/cognitive-gate/`.
 - Link to the GitHub release, not a moving branch, when possible.
 - State clearly that this is a best-effort reference implementation.
 

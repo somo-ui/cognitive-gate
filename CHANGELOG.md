@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.6 - External distribution readiness
+
+- Added ClawHub/SkillHub-ready skill package under `skill/cognitive-gate/`.
+- Added external distribution status with verified blockers and next manual steps.
+- Updated GitHub, Spaces, and skill install references to v0.1.6.
+
 ## v0.1.5 - Observability and publishing checklist
 
 - Added observability guide for GitHub traffic, clones, referrers, releases, and search checks.

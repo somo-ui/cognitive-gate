@@ -32,7 +32,7 @@ Requires Python 3.9 or newer. Runtime dependencies: Python standard library only
 Install directly from GitHub:
 
 ```bash
-python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.5"
+python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.6"
 ```
 
 Or install from a local checkout:
@@ -125,7 +125,7 @@ The current audit layer is a best-effort guardrail. It is useful for learning, p
 
 ## Project status
 
-Current version: v0.1.5 public reference quality.
+Current version: v0.1.6 public reference quality.
 
 - Installable package with `cognitive-gate` CLI.
 - Local-only deterministic demo.
@@ -133,7 +133,7 @@ Current version: v0.1.5 public reference quality.
 - Unit tests for the early gate behavior.
 - Community templates for issues and pull requests.
 
-See [CHANGELOG.md](CHANGELOG.md) for release history, [docs/PUBLIC_POSITIONING.md](docs/PUBLIC_POSITIONING.md) for public positioning, [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md) for install and demo channels, and [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md) for public traction checks.
+See [CHANGELOG.md](CHANGELOG.md) for release history, [docs/PUBLIC_POSITIONING.md](docs/PUBLIC_POSITIONING.md) for public positioning, [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md) for install and demo channels, [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md) for public traction checks, and [docs/EXTERNAL_DISTRIBUTION_STATUS.md](docs/EXTERNAL_DISTRIBUTION_STATUS.md) for current external publishing state.
 
 ## Contributing
 

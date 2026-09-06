@@ -7,7 +7,7 @@ Cognitive Gate should be easy to try from three public paths: GitHub, skill dire
 Primary install command:
 
 ```bash
-python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.5"
+python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.6"
 ```
 
 Smoke test:
@@ -22,15 +22,27 @@ Use `docs/assets/social-preview.png` as the repository social preview image in G
 
 ## Skill directories
 
-Use the repository as a public reference entry before adding platform-specific packaging. A good listing should include:
+Use `skill/cognitive-gate/` as the public skill package. A good listing should include:
 
 - Name: Cognitive Gate
 - Summary: auditable AI constraints and local decision records
 - Tags: `ai-agent-guardrails`, `ai-constraints`, `auditable-ai`, `model-agnostic`, `local-first`
 - Install: GitHub pip command above
+- Skill path: `skill/cognitive-gate/`
 - Boundary: best-effort reference implementation, not a production security boundary
 
 Do not introduce project-private roadmap names in public directory listings.
+
+ClawHub publish command after logging in:
+
+```bash
+clawhub skill publish skill/cognitive-gate \
+  --slug cognitive-gate \
+  --name "Cognitive Gate" \
+  --version 0.1.6 \
+  --tags ai-agent-guardrails,ai-constraints,auditable-ai,model-agnostic,local-first \
+  --changelog "Initial public skill listing for Cognitive Gate v0.1.6."
+```
 
 ## Hosted demos
 

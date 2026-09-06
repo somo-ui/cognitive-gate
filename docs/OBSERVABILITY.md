@@ -86,13 +86,13 @@ Useful exposure means the repository appears for its exact name first, then grad
 
 Snapshot captured on 2026-09-07 Asia/Shanghai through GitHub traffic APIs.
 
-- Version: v0.1.5 candidate
+- Version: v0.1.6 candidate
 - Views / uniques: 5 / 2
 - Clones / uniques: 30 / 13
 - Top referrer: `github.com` with 3 views and 1 unique visitor
 - Top paths: `/somo-ui/cognitive-gate` and `/somo-ui/cognitive-gate/watchers`
 - Interpretation: baseline traffic exists, but category-level public discovery is not proven yet.
-- Next action: publish v0.1.5, upload the social preview image manually in GitHub settings, then recheck exact-name and category searches after indexing.
+- Next action: publish v0.1.6, upload the social preview image manually in GitHub settings, then recheck exact-name and category searches after indexing.
 
 ## Interpretation
 
