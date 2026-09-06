@@ -1,13 +1,14 @@
 # Roadmap
 
-Cognitive Gate is the early public reference for ORIGIN. Its near-term purpose is not to claim a complete safety product, but to make the core idea installable, inspectable, and testable: user boundaries should become deterministic control checks around probabilistic AI output.
+Cognitive Gate is a public reference implementation for auditable AI constraints. Its near-term purpose is to stay easy to install, easy to inspect, and honest about its current boundary: best-effort checks around model output.
 
-## Current release: v0.1.1
+## Current release: v0.1.2
 
 - Installable Python package with `cognitive-gate` CLI.
 - Local-only demo with no required API key.
 - Constraint persistence through JSON.
 - Mock model adapter for deterministic testing.
+- Runnable examples for basic audit, cross-session constraints, and local records.
 - Unit tests covering the early gate behavior.
 
 ## Next milestones
@@ -19,7 +20,7 @@ Cognitive Gate is the early public reference for ORIGIN. Its near-term purpose i
 - Add clearer decision records that show why a request was allowed or blocked.
 - Keep README, issue templates, and contribution flow easy for first-time reviewers.
 
-### v0.2.x: ORIGIN alignment
+### v0.2.x: Constraint correctness
 
 - Preserve the exact user-original text as the evidence anchor.
 - Make normalized rules explicit and auditable.
@@ -35,7 +36,6 @@ Cognitive Gate is the early public reference for ORIGIN. Its near-term purpose i
 
 ## Non-goals for this repository
 
-- It is not the full modern ORIGIN safety core.
 - It is not an operating-system sandbox.
 - It is not a mathematical guarantee that any LLM output is safe.
 - It should not be marketed as a production security boundary without independent audit.

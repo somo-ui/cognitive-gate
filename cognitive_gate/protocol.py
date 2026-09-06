@@ -1,13 +1,9 @@
-"""统一 AI 决策审计协议（Cognitive Gate Protocol）。
+"""Cognitive Gate Protocol: compile, route, generate, audit, and record.
 
-这是跨所有公司（Tesla / xAI / SpaceX / X）的统一审计层：
-无论 Grok 在哪家公司被调用，输出都经过同一套「编译 → 分型 → 生成 → 审计」。
-它是一个**协议**，不是集成——可在任意调用点前置插入。
-
-编排一次完整决策：
-  1. 编译：人类指令 → CognitiveRequest（确定性结构）
+Core flow:
+  1. 编译：人类指令 → CognitiveRequest
   2. 分型：P1 路由（值不值得、用哪类算力）
-  3. 生成：调用模型（默认 MockGrok，可换真 Grok）
+  3. 生成：调用模型适配器
   4. 审计：输出 vs 生效/锁定约束 → 通过或拦截
   5. 留痕：写出决策档案(decision record) + 追加决策病历(decision history)
 """

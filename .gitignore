@@ -4,6 +4,8 @@ decision_history.jsonl
 decision_record.json
 __pycache__/
 *.pyc
+build/
+*.egg-info/
 
 # 生成的对外稿子（构建产物）
 马斯克展示方案_修正版.pdf

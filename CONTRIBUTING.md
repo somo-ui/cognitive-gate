@@ -1,6 +1,6 @@
 # Contributing
 
-感谢参与 Cognitive Gate / ORIGIN 早期参考实现。
+感谢参与 Cognitive Gate 公开参考实现。
 
 请先创建 Issue 描述问题或提案，再提交 Pull Request。PR 应包含：
 

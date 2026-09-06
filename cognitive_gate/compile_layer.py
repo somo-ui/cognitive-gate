@@ -1,18 +1,15 @@
-"""编译层：把模糊的人类指令，编译成结构化的 CognitiveRequest。
+"""Compile natural-language instructions into structured CognitiveRequest data.
 
-这是插在 Grok / 任何大模型**之前**的一层。
-它做三件事：
-  1. 从自由文本里抽取【目标 / 模式 / 约束 / 风险】，让下游接收的是"确定性结构"，
-     而不是"概率性文本"——这正是 Optimus / Macrohard 缺失的"意图编译器"。
-  2. 把用户措辞重写为无歧义的 reconstructed_text（决策病历里留痕）。
-  3. 把抽取出的约束建议登记进 ConstraintStore（跨任务继承的入口）。
+It does three things:
+  1. Extract goal, mode, constraints, and risk from free text.
+  2. Reconstruct the request into a clearer text form for audit records.
+  3. Register extracted constraint suggestions in ConstraintStore.
 
 语言无关性说明：
   本层的**结构**（CognitiveRequest、约束继承、审计接口）完全语言无关。
   这里的抽取是**最小启发式实现**，用于证明架构可跑，且内置中文 + 英文两套正则，
-  自动按输入语言切换——因为它本身也是给模型（如 Grok）做意图编译的占位。
-  生产环境应把这套编译替换为对 Grok/xAI 的调用（见 model_adapter），由 LLM
-  原生处理任意语言，正则只是零依赖 demo 的妥协。
+  自动按输入语言切换。生产环境可以把这套启发式替换成更强的解析器或模型调用；
+  当前正则只是零依赖 demo 的妥协。
 """
 
 from __future__ import annotations

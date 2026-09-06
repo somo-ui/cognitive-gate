@@ -1,120 +1,138 @@
-# Cognitive Gate / ORIGIN early reference
+# Cognitive Gate
 
 [![Tests](https://github.com/somo-ui/cognitive-gate/actions/workflows/test.yml/badge.svg)](https://github.com/somo-ui/cognitive-gate/actions/workflows/test.yml)
 [![Release](https://img.shields.io/github/v/release/somo-ui/cognitive-gate)](https://github.com/somo-ui/cognitive-gate/releases)
 
-这是 ORIGIN（源点协约）的早期公开参考实现，不代表当前仍在演化的安全核心。
+Cognitive Gate is a small, installable reference implementation for turning user constraints into structured requests and auditable checks around AI model output.
 
-> 这不是一个产品 demo，而是一个**控制层优先**的架构证明：模型是引擎，本仓库提供方向盘和刹车。
+It is designed for people exploring AI agent guardrails, cross-session constraints, local audit records, and model-agnostic control layers. The repository runs without API keys and uses only the Python standard library at runtime.
 
-## 它解决什么
+中文一句话：Cognitive Gate 把用户说出的限制条件编译成可审计请求，并在模型输出后检查是否违反这些限制。
 
-一句话：把用户表达的约束编译成可审计请求，并在模型输出后检查是否违反约束。
+## Why it exists
 
-对齐马斯克 2026 年真实项目与言论的五个痛点：
+Large language models are probabilistic. User boundaries should be observable, repeatable, and testable.
 
-| 马斯克的体系 | Cognitive Gate 提供的层 |
-|---|---|
-| **Grok**（输出不可控、不可审计） | 输出前**意图编译** + 输出后**约束审计** |
-| **Optimus / Macrohard**（需要确定性任务而非概率文本） | 从"模糊指令"到结构化 `CognitiveRequest` 的**翻译层** |
-| **Macrohard**（跨任务规则一致性） | **跨任务约束继承**：说三次"不对"→ 永久锁定 |
-| **太空算力**（轨道数据中心极贵） | **P1 分型器**：判断任务值不值得、用哪类算力 |
-| **跨公司 AI 治理** | 统一的 **AI 决策审计协议**（协议，不是集成） |
+Cognitive Gate demonstrates one practical pattern:
 
-## 安装
+1. Compile a natural-language request into a structured `CognitiveRequest`.
+2. Extract user constraints from Chinese or English input.
+3. Route the request through a simple task classifier.
+4. Generate a mock model response.
+5. Audit the response against active or locked constraints.
+6. Write local decision records for inspection.
 
-需要 Python 3.9 或更高版本。运行时只依赖 Python 标准库：
+## Install
+
+Requires Python 3.9 or newer. Runtime dependencies: Python standard library only.
 
 ```bash
 git clone https://github.com/somo-ui/cognitive-gate.git
 cd cognitive-gate
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install .
 ```
 
-安装后可直接使用 `cognitive-gate --demo`。开发测试不需要额外依赖：
+Then run:
+
+```bash
+cognitive-gate --demo
+cognitive-gate --input "Tidy this room, but don't use the red approach"
+cognitive-gate --input "帮我整理房间，但别用红色方案"
+```
+
+For development checks:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## 3 分钟验证（无需 API key，纯标准库）
+## Quick examples
+
+Run individual examples from the repository root:
 
 ```bash
-cd cognitive-gate
-python -m unittest tests.test_gate -v     # 跑测试
-cognitive-gate --demo                     # 看端到端演示（含"说三次不对永久锁定"）
-cognitive-gate --input "帮我整理房间，但别用红色方案"   # 单条请求
+python examples/01_basic_gate.py
+python examples/02_cross_session_constraint.py
+python examples/03_local_audit_record.py
 ```
 
-默认使用 `MockGrok`，因此零配置即可端到端跑通。所有个人数据仅落在本地
-`constraints.json` / `decision_history.jsonl`，可物理删除。
+The default adapter is a deterministic mock model, so the project is inspectable without provider accounts, API keys, or network access.
 
-## 架构
+## Architecture
 
 ```
-用户指令
+User request
    │
    ▼
-[编译层]  CompileLayer  →  CognitiveRequest(goal/mode/constraints/risk/reconstructed_text)
+[Compile]  CompileLayer  →  CognitiveRequest(goal/mode/constraints/risk/reconstructed_text)
    │
    ▼
-[P1分型]  P1Classifier  →  任务分型 + 算力路由（地面 / 太空 / 本地）
+[Route]    P1Classifier  →  task tier + route
    │
    ▼
-[模型]    MockGrok / GrokAdapter（可插拔；默认 mock，可换真 xAI Grok）
+[Model]    MockModel / provider adapter
    │
    ▼
-[审计层]  AuditLayer    →  输出 vs 生效/锁定约束 → 通过 或 拦截(blocked_reason)
+[Audit]    AuditLayer    →  output vs active/locked constraints
    │
    ▼
-[留痕]    决策档案(decision_record.json) + 决策病历(decision_history.jsonl)
+[Record]   decision_record.json + decision_history.jsonl
 ```
 
-约束库 `ConstraintStore` 持久化到 JSON，因此**跨任务、跨会话**继承规则——
-这正是"模拟整个公司运作"需要的规则一致性。
+`ConstraintStore` persists JSON locally, so a constraint can be reused across runs. Local files such as `constraints.json`, `decision_record.json`, and `decision_history.jsonl` can be inspected or deleted directly.
 
-## 接入真实 Grok
+## What this is
 
-```python
-import os
-os.environ["XAI_API_KEY"] = "你的key"
-from cognitive_gate import CognitiveGateProtocol
-gate = CognitiveGateProtocol()   # 自动选用 GrokAdapter
+- A reference implementation for AI agent guardrails.
+- A tiny constraint engine for demonstrations and tests.
+- A model-agnostic audit pattern that can sit around different model adapters.
+- A bilingual example for Chinese and English user constraints.
+
+## What this is not
+
+- It is not a production security boundary.
+- It is not an operating-system sandbox.
+- It is not a mathematical guarantee that any LLM output is safe.
+- It does not claim cross-platform enforcement outside this repository.
+
+The current audit layer is a best-effort guardrail. It is useful for learning, prototyping, and creating reproducible tests, but independent security review is required before production use.
+
+## Project status
+
+Current version: public reference quality.
+
+- Installable package with `cognitive-gate` CLI.
+- Local-only deterministic demo.
+- JSON-backed constraint persistence.
+- Unit tests for the early gate behavior.
+- Community templates for issues and pull requests.
+
+## Contributing
+
+Issues and pull requests are welcome. Good contributions include reproducible failure cases, stronger tests, clearer audit records, and provider adapters that keep the control layer separate from model-specific behavior.
+
+Before submitting a pull request:
+
+```bash
+python -m unittest discover -s tests -v
+python -m pip install .
+cognitive-gate --demo
 ```
-`GrokAdapter` 的网络调用骨架已预留（见 `cognitive_gate/model_adapter.py`）。
 
-## 诚实的范围声明（重要）
-
-本仓库解决的是 **可控性 / 可审计性 / 一致性**（工程与 UX 层面的问题），
-**不解决**马斯克担心的"AI 接管人类"那种**生存性安全**问题。
-
-对 LLM 输出的语义合规审计目前是 **best-effort 护栏**，不是数学保证——
-这是开放研究问题。本层用可解释规则 + 可插拔模型自检做"最大努力拦截"，
-并明确标注 `confidence` 的不确定性。请勿将其宣传为对灭绝风险的保险。
-
-## 项目状态
-
-当前版本适合学习、演示和接口验证。它还不是生产级安全边界，不提供操作系统级沙箱、
-硬件密钥托管、跨模型强制执行或对任意外部工具的绝对阻断。生产使用前请自行完成安全审查。
-
-## 参与项目
-
-欢迎通过 Issue 提交可复现问题、使用场景和改进建议。提交代码前请运行完整测试，并在描述中
-说明行为变化、兼容性影响和测试结果。
-
-## 文件
+## Files
 
 ```
 cognitive_gate/
-  compile_layer.py     编译层（CognitiveRequest）
-  p1_classifier.py     P1 任务分型器
-  constraint_store.py  跨任务约束继承（说三次不对永久锁定）
-  audit_layer.py       输出后审计层
-  model_adapter.py     可插拔模型（MockGrok 默认 / GrokAdapter 预留）
-  protocol.py          统一审计协议（编排以上全部）
-demo.py                CLI 演示
-tests/test_gate.py     单元测试
+  compile_layer.py     turns raw input into CognitiveRequest
+  p1_classifier.py     simple task tier classifier
+  constraint_store.py  local JSON constraint store
+  audit_layer.py       output audit checks
+  model_adapter.py     mock/provider adapter boundary
+  protocol.py          orchestration layer
+demo.py                CLI demo
+examples/              runnable examples
+tests/test_gate.py     unit tests
 ```
