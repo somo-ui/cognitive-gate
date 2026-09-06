@@ -57,7 +57,7 @@ PY
 
 ## ClawHub
 
-Status: dry-run passed, blocked by login.
+Status: dry-run passed, publishing paused after user denied CLI authorization.
 
 Prepared skill package:
 
@@ -75,7 +75,14 @@ version: 0.1.6
 fileCount: 1
 ```
 
-Publish after `clawhub login`:
+Latest CLI authorization result:
+
+```text
+Authorization denied by user.
+Error: Authorization denied by user.
+```
+
+Publish only after the user explicitly chooses to authorize ClawHub CLI access:
 
 ```bash
 npx -y clawhub@0.23.3 skill publish skill/cognitive-gate \
@@ -99,8 +106,7 @@ The SkillHub site was reachable through search snippets, but direct fetches for 
 
 ## Current priority
 
-1. Publish v0.1.6 so ClawHub source metadata points to a tag that contains `skill/cognitive-gate/`.
-2. Manually upload GitHub social preview.
-3. Log in to Hugging Face and publish the Space from `spaces/`.
-4. Log in to ClawHub and run the publish command above.
-5. Recheck GitHub traffic and exact-name search after indexing.
+1. Manually upload GitHub social preview.
+2. Log in to Hugging Face and publish the Space from `spaces/`.
+3. Re-authorize ClawHub only if the user decides the registry listing is worth publishing now.
+4. Recheck GitHub traffic and exact-name search after indexing.
