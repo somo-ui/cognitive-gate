@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.5 - Observability and publishing checklist
+
+- Added observability guide for GitHub traffic, clones, referrers, releases, and search checks.
+- Added a publishing checklist for GitHub preview, skill directories, hosted demo, and post-publish monitoring.
+- Linked observability from the README project status section.
+
 ## v0.1.4 - Exposure layer
 
 - Added README architecture visual.

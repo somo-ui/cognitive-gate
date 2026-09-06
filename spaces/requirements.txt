@@ -1,2 +1,2 @@
-cognitive-gate @ git+https://github.com/somo-ui/cognitive-gate.git@v0.1.4
+cognitive-gate @ git+https://github.com/somo-ui/cognitive-gate.git@v0.1.5
 gradio>=5.0

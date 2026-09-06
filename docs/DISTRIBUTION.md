@@ -7,7 +7,7 @@ Cognitive Gate should be easy to try from three public paths: GitHub, skill dire
 Primary install command:
 
 ```bash
-python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.4"
+python3 -m pip install "git+https://github.com/somo-ui/cognitive-gate.git@v0.1.5"
 ```
 
 Smoke test:
